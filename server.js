@@ -1,8 +1,6 @@
-var exphbs = require("express-handlebars");
-var express = require("express");
-var mysql = require("mysql");
+const express = require("express");
 
-var app = express();
+const app = express();
 
 // Set the port of our application
 // process.env.PORT lets the port be set by Heroku
