@@ -21,15 +21,19 @@ $(function () {
     });
   });
 
-  $("#add-burger-button").on("submit", function (event) {
+  $(".create-form").on("submit", (event) => {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
+    console.log("you clicked the add burger button");
 
-    let newBurger = {
-      burger_name: $("#burger").val().trim(),
+    const newBurger = {
+      burger_name: $("#new-burger").val().trim(),
       //   devoured: $("[name=sleepy]:checked").val().trim(),
       devoured: false,
     };
+
+    console.log("New Burger is:");
+    console.log(newBurger);
 
     // Send the POST request.
     $.ajax("/api/burgers", {
