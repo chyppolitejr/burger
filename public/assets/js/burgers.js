@@ -11,11 +11,11 @@ $(function () {
     };
 
     // Send the PUT request.
-    $.ajax("/api/burger/" + id, {
+    $.ajax("/api/burgers/" + id, {
       type: "PUT",
       data: newDevourState,
     }).then(function () {
-      console.log("changed sleep to", newSleep);
+      console.log("changed sleep to", newBurger);
       // Reload the page to get the updated list
       location.reload();
     });
@@ -32,7 +32,7 @@ $(function () {
     };
 
     // Send the POST request.
-    $.ajax("/api/burger", {
+    $.ajax("/api/burgers", {
       type: "POST",
       data: newBurger,
     }).then(function () {
