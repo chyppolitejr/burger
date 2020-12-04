@@ -1,0 +1,10 @@
+<li class="list-group-item">
+    {{name}}
+
+    {{#if devoured}}
+    <button type="button " class="change-sleep btn-info ml-3" data-id="{{id}}" data-newburger="{{devoured}}">
+        DEVOUR
+    </button>
+    {{/if}}
+    {{!-- <button class="delete-cat btn-primary" data-id="{{this.id}}">DELETE!</button> --}}
+</li>
