@@ -1,18 +1,17 @@
-const { query } = require("./connection.js");
+// const { query } = require("./connection.js");
 const connection = require("./connection.js");
 
-
- printQuestionMarks = (num) => {
+printQuestionMarks = (num) => {
   var arr = [];
   for (var i = 0; i < num; i++) {
     arr.push("?");
   }
   return arr.toString();
-}
+};
 
 // Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
-  var arr = [];
+  let arr = [];
 
   // loop through the keys and push the key/value as a string int arr
   for (var key in ob) {
@@ -32,11 +31,12 @@ function objToSql(ob) {
   return arr.toString();
 }
 
+//ORM
 const orm = {
   //selectAll
   selectAll: (tableInput, cb) => {
     let queryString = "SELECT * FROM ??";
-    connection.query(queryString, [tableInput], (err, result) => {
+    connection.query(queryString, tableInput, (err, result) => {
       if (err) {
         throw err;
       }
@@ -47,23 +47,23 @@ const orm = {
   //insertOne
   insertOne: (table, cols, vals, cb) => {
     let queryString = "INSERT INTO " + table;
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
+    queryString += " (";
+    queryString += cols.toString();
+    queryString += ") ";
+    queryString += "VALUES (";
+    queryString += printQuestionMarks(vals.length);
+    queryString += ") ";
 
-        console.log(queryString);
-        connection.query(queryString, vals, (err,result) {
-            if (err) {
-                throw err;
-            }
-            cb(result);
-        });
+    console.log(queryString);
+    connection.query(queryString, vals, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
   },
   //updateOne
-   updateOne: function(table, objColVals, condition, cb) {
+  updateOne: function (table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
@@ -72,7 +72,7 @@ const orm = {
     queryString += condition;
 
     console.log(queryString);
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
@@ -80,9 +80,7 @@ const orm = {
       cb(result);
     });
   },
-
 };
 
-
 //Export the orm object for the model
-modules.export = orm;
+module.exports = orm;

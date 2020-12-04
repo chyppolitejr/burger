@@ -7,27 +7,28 @@ const burger = require("../models/burger.js");
 //Routes
 // router to get all burgers
 router.get("/", (req, res) => {
-  burger.all(function (data) {
+  burger.selectAll(function (data) {
     var hbsObject = {
       burgers: data,
     };
+    console.log("handlebars object:");
     console.log(hbsObject);
     res.render("index", hbsObject);
   });
 });
 
-router.post("/api/burger", (req, res) => {
-  burger.create(["burger_name"], [req.body.name], function (result) {
+router.post("/api/burgers", (req, res) => {
+  burger.insertOne(["burger_name"], [req.body.name], (result) => {
     // Send back the ID of the new burger
     res.json({ id: result.insertId });
   });
 });
 
 // code for setting devour to true (devour burger)
-router.put("/api/burger/:id", (req, res) => {
+router.put("/api/burgers/:id", (req, res) => {
   let condition = "id = " + req.params.id;
   console.log("condition", condition);
-  burger.update(
+  burger.updateOne(
     {
       devoured: true,
     },
@@ -43,4 +44,4 @@ router.put("/api/burger/:id", (req, res) => {
   );
 });
 
-module.export = router;
+module.exports = router;
