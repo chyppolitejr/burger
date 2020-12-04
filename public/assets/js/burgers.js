@@ -1,6 +1,8 @@
 $(function () {
   // devour burger
   $(".change-devour").on("click", function (event) {
+    console.log("You clicked the devour button");
+
     let id = $(this).data("id");
     let newBurger = $(this).data("newburger");
 
