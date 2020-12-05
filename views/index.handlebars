@@ -13,10 +13,10 @@
     <!-- devoured burgers-->
     <div class="col-6">
         <h3>Devoured Burgers</h3>
-        <ul class="list-group" id="burgers-devoured">
+        <ul class="list-group bg-secondary" id="burgers-devoured">
             {{#each burgers}}
             {{#if devoured}}
-            {{> burgers/burger-block devoured=false}}
+            {{> burgers/devoured devoured=false}}
             {{/if}}
             {{/each}}
         </ul>

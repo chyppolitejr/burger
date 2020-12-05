@@ -1,10 +1,9 @@
+{{!-- set bg of devoured burger list --}}
 <li class="list-group-item">
-    {{burger_name}}
+    {{!-- burger name and id  --}}
+    {{id}} . {{burger_name}}
 
-    {{#if devoured}}
     <button type="button " class="change-devour btn-info ml-3" data-id="{{id}}" data-newburger="{{devoured}}">
         DEVOUR!
     </button>
-    {{/if}}
-    {{!-- <button class="delete-cat btn-primary" data-id="{{this.id}}">DELETE!</button> --}}
 </li>
