@@ -35,14 +35,21 @@ $(function () {
     console.log("New Burger is:");
     console.log(newBurger);
 
-    // Send the POST request.
-    $.ajax("/api/burgers", {
-      type: "POST",
-      data: newBurger,
-    }).then(function () {
-      console.log("created new burger");
-      // Reload the page to get the updated list
-      location.reload();
-    });
+    console.log("new burger length is:");
+    console.log(newBurger.burger_name.length);
+
+    if (newBurger.burger_name.length > 0) {
+      // Send the POST request.
+      $.ajax("/api/burgers", {
+        type: "POST",
+        data: newBurger,
+      }).then(function () {
+        console.log("created new burger");
+        // Reload the page to get the updated list
+        location.reload();
+      });
+    } else {
+      alert("New Burger Name Cannot Be Null");
+    }
   });
 });
